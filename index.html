@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZPS | Enterprise ERP Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="app-bg"></div>
+
+    <section id="login-view" class="view active">
+        <div class="login-bg-overlay"></div>
+        <div class="login-container glass-panel">
+            <div class="login-header">
+                <div class="logo-icon"><i class="fa-solid fa-globe"></i></div>
+                <h1>ZORAI <span>Procurement Services</span></h1>
+                <p>Welcome back. Please sign in to your workspace.</p>
+            </div>
+            <form id="login-form">
+                <div class="input-group">
+                    <i class="fa-solid fa-envelope"></i>
+                    <input type="email" placeholder="Email Address" value="executive@zps.co.zm" required>
+                </div>
+                <div class="input-group">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" placeholder="Password" value="password123" required>
+                </div>
+                <div class="form-row">
+                    <label class="checkbox-label">
+                        <input type="checkbox" checked> Remember Me
+                    </label>
+                    <a href="#" class="forgot-link">Forgot Password?</a>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Sign In</button>
+            </form>
+        </div>
+    </section>
+
+    <section id="app-view" class="view hidden">
+        
+        <aside id="sidebar" class="glass-sidebar">
+            <div class="sidebar-brand">
+                <i class="fa-solid fa-globe brand-icon"></i>
+                <h2>ZPS ERP</h2>
+                <button id="close-sidebar" class="mobile-only icon-btn"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <nav class="sidebar-menu">
+                <a href="#" class="nav-link active" data-target="dashboard"><i class="fa-solid fa-chart-line"></i> <span>Dashboard</span></a>
+                <a href="#" class="nav-link" data-target="procurement"><i class="fa-solid fa-cart-flatbed"></i> <span>Procurement</span></a>
+                <a href="#" class="nav-link" data-target="suppliers"><i class="fa-solid fa-truck-field"></i> <span>Suppliers</span></a>
+                <a href="#" class="nav-link" data-target="customers"><i class="fa-solid fa-users"></i> <span>Customers</span></a>
+                <a href="#" class="nav-link" data-target="sales"><i class="fa-solid fa-handshake"></i> <span>Sales</span></a>
+                <a href="#" class="nav-link" data-target="inventory"><i class="fa-solid fa-boxes-stacked"></i> <span>Inventory</span></a>
+                <a href="#" class="nav-link" data-target="logistics"><i class="fa-solid fa-route"></i> <span>Logistics</span></a>
+                <a href="#" class="nav-link" data-target="documents"><i class="fa-solid fa-folder-open"></i> <span>Documents</span></a>
+                <a href="#" class="nav-link" data-target="reports"><i class="fa-solid fa-file-invoice"></i> <span>Reports</span></a>
+                <a href="#" class="nav-link" data-target="analytics"><i class="fa-solid fa-chart-pie"></i> <span>Analytics</span></a>
+                <a href="#" class="nav-link" data-target="employees"><i class="fa-solid fa-user-tie"></i> <span>Employees</span></a>
+                <a href="#" class="nav-link" data-target="settings"><i class="fa-solid fa-gear"></i> <span>Settings</span></a>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-card">
+                    <img src="https://i.pravatar.cc/150?img=11" alt="User" class="avatar">
+                    <div class="user-info">
+                        <h4>M. Banda</h4>
+                        <p>System Admin</p>
+                    </div>
+                </div>
+                <button id="logout-btn" class="icon-btn" title="Logout"><i class="fa-solid fa-arrow-right-from-bracket"></i></button>
+            </div>
+        </aside>
+
+        <main id="main-content">
+            <header class="topbar glass-panel">
+                <div class="topbar-left">
+                    <button id="mobile-menu-btn" class="icon-btn mobile-only"><i class="fa-solid fa-bars"></i></button>
+                    <h2 id="page-title">Executive Dashboard</h2>
+                </div>
+                <div class="topbar-right">
+                    <div class="search-box">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" placeholder="Search POs, Contracts, Suppliers...">
+                    </div>
+                    <button class="icon-btn notif-btn"><i class="fa-solid fa-bell"></i><span class="badge">4</span></button>
+                </div>
+            </header>
+
+            <div class="content-scroll">
+                
+                <div id="module-dashboard" class="module active">
+                    <div class="kpi-grid">
+                        <div class="glass-card kpi-card">
+                            <div class="kpi-icon"><i class="fa-solid fa-file-signature"></i></div>
+                            <div class="kpi-data">
+                                <h3>Procurement Reqs</h3>
+                                <div class="counter" data-target="142">0</div>
+                            </div>
+                        </div>
+                        <div class="glass-card kpi-card">
+                            <div class="kpi-icon"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+                            <div class="kpi-data">
+                                <h3>Purchase Orders</h3>
+                                <div class="counter" data-target="87">0</div>
+                            </div>
+                        </div>
+                        <div class="glass-card kpi-card">
+                            <div class="kpi-icon"><i class="fa-solid fa-truck-fast"></i></div>
+                            <div class="kpi-data">
+                                <h3>Active Suppliers</h3>
+                                <div class="counter" data-target="324">0</div>
+                            </div>
+                        </div>
+                        <div class="glass-card kpi-card">
+                            <div class="kpi-icon"><i class="fa-solid fa-handshake"></i></div>
+                            <div class="kpi-data">
+                                <h3>Active Contracts</h3>
+                                <div class="counter" data-target="56">0</div>
+                            </div>
+                        </div>
+                        <div class="glass-card kpi-card">
+                            <div class="kpi-icon"><i class="fa-solid fa-boxes-packing"></i></div>
+                            <div class="kpi-data">
+                                <h3>Pending Deliveries</h3>
+                                <div class="counter" data-target="28">0</div>
+                            </div>
+                        </div>
+                        <div class="glass-card kpi-card">
+                            <div class="kpi-icon"><i class="fa-solid fa-money-bill-trend-up"></i></div>
+                            <div class="kpi-data">
+                                <h3>Monthly Rev (USD)</h3>
+                                <div class="counter" data-target="1250000">$0</div>
+                            </div>
+                        </div>
+                        <div class="glass-card kpi-card">
+                            <div class="kpi-icon"><i class="fa-solid fa-warehouse"></i></div>
+                            <div class="kpi-data">
+                                <h3>Warehouse Stock</h3>
+                                <div class="counter" data-target="15400">0</div>
+                            </div>
+                        </div>
+                        <div class="glass-card kpi-card">
+                            <div class="kpi-icon"><i class="fa-solid fa-comment-dollar"></i></div>
+                            <div class="kpi-data">
+                                <h3>Open Quotations</h3>
+                                <div class="counter" data-target="15">0</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-bottom-grid mt-2">
+                        <div class="glass-card">
+                            <h3 class="card-title">Recent Activities</h3>
+                            <ul class="activity-list">
+                                <li><i class="fa-solid fa-check text-green"></i> <span>PO #4029 Approved for Copperbelt Mining.</span></li>
+                                <li><i class="fa-solid fa-truck text-purple"></i> <span>Shipment out for delivery to Lusaka Depot.</span></li>
+                                <li><i class="fa-solid fa-triangle-exclamation text-yellow"></i> <span>Low stock alert: Industrial Batteries.</span></li>
+                                <li><i class="fa-solid fa-file-contract text-blue"></i> <span>New contract signed with Global Logistics Inc.</span></li>
+                            </ul>
+                        </div>
+                        <div class="glass-card">
+                            <h3 class="card-title">Quick Actions</h3>
+                            <div class="btn-grid">
+                                <button class="btn btn-secondary"><i class="fa-solid fa-plus"></i> New PO</button>
+                                <button class="btn btn-secondary"><i class="fa-solid fa-user-plus"></i> Add Supplier</button>
+                                <button class="btn btn-secondary"><i class="fa-solid fa-file-invoice"></i> Generate Invoice</button>
+                                <button class="btn btn-secondary"><i class="fa-solid fa-boxes-stacked"></i> Check Inventory</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="module-procurement" class="module hidden">
+                    <div class="filter-bar glass-panel mb-2">
+                        <button class="btn btn-primary">Create Request</button>
+                        <div class="tabs">
+                            <span class="active">All</span>
+                            <span>Pending (12)</span>
+                            <span>Approved (45)</span>
+                            <span>Completed</span>
+                        </div>
+                    </div>
+                    <div class="cards-grid">
+                        <div class="glass-card data-card">
+                            <div class="card-header"><h4>REQ-2026-081</h4><span class="status pending">Pending</span></div>
+                            <p class="desc">Heavy Machinery Spares</p>
+                            <div class="card-meta"><span><i class="fa-solid fa-building"></i> Copperbelt Mining</span><span>$45,000</span></div>
+                            <button class="btn btn-secondary w-100 mt-1">Review</button>
+                        </div>
+                        <div class="glass-card data-card">
+                            <div class="card-header"><h4>REQ-2026-080</h4><span class="status approved">Approved</span></div>
+                            <p class="desc">Safety PPE Kit (x500)</p>
+                            <div class="card-meta"><span><i class="fa-solid fa-building"></i> Kansanshi Mines</span><span>$12,500</span></div>
+                            <button class="btn btn-secondary w-100 mt-1">View PO</button>
+                        </div>
+                        <div class="glass-card data-card">
+                            <div class="card-header"><h4>REQ-2026-079</h4><span class="status completed">Completed</span></div>
+                            <p class="desc">Electrical Transformers</p>
+                            <div class="card-meta"><span><i class="fa-solid fa-building"></i> ZESCO</span><span>$120,000</span></div>
+                            <button class="btn btn-secondary w-100 mt-1">View Invoice</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="module-suppliers" class="module hidden">
+                    <div class="glass-card full-height">
+                        <div class="card-header flex-between mb-2">
+                            <h3>Supplier Directory</h3>
+                            <button class="btn btn-primary"><i class="fa-solid fa-plus"></i> Add Supplier</button>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Company</th><th>Category</th><th>Contact Person</th><th>Phone</th><th>Status</th><th>Rating</th><th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Global Equipment Ltd</strong></td><td>Heavy Machinery</td><td>James Smith</td><td>+27 11 555 0198</td><td><span class="status approved">Active</span></td><td><i class="fa-solid fa-star text-yellow"></i> 4.8</td><td><button class="icon-btn"><i class="fa-solid fa-ellipsis-vertical"></i></button></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Lusaka Logistics</strong></td><td>Transport</td><td>Sarah Banda</td><td>+260 97 123 4567</td><td><span class="status approved">Active</span></td><td><i class="fa-solid fa-star text-yellow"></i> 4.5</td><td><button class="icon-btn"><i class="fa-solid fa-ellipsis-vertical"></i></button></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>TechSupply Co</strong></td><td>IT & Electrical</td><td>David Chen</td><td>+44 20 7946 0958</td><td><span class="status pending">Under Review</span></td><td>N/A</td><td><button class="icon-btn"><i class="fa-solid fa-ellipsis-vertical"></i></button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="module-customers" class="module hidden">
+                    <div class="glass-card full-height">
+                        <div class="card-header flex-between mb-2">
+                            <h3>Customer CRM</h3>
+                            <div class="search-box glass-panel"><i class="fa-solid fa-search"></i><input type="text" placeholder="Search Customers"></div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Customer Name</th><th>Company</th><th>Industry</th><th>Email</th><th>Total Purchases</th><th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>John Doe</td><td>Mopani Copper Mines</td><td>Mining</td><td>j.doe@mopani.com.zm</td><td>$1.2M</td><td><button class="btn btn-secondary btn-sm">Profile</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Alice Mwape</td><td>Govt Min. of Works</td><td>Government</td><td>amwape@gov.zm</td><td>$850K</td><td><button class="btn btn-secondary btn-sm">Profile</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Robert Ndlovu</td><td>BuildIt Zambia</td><td>Construction</td><td>robert@buildit.co.zm</td><td>$340K</td><td><button class="btn btn-secondary btn-sm">Profile</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="module-sales" class="module hidden">
+                    <div class="kanban-board">
+                        <div class="kanban-col glass-panel">
+                            <h4 class="col-title">New Lead (2)</h4>
+                            <div class="kanban-card glass-card">
+                                <h5>FQM Trident</h5><p>Est: $500k</p>
+                                <div class="k-meta"><span><i class="fa-regular fa-clock"></i> 14 Aug</span><span><i class="fa-solid fa-user"></i> Mbewe</span></div>
+                            </div>
+                            <div class="kanban-card glass-card">
+                                <h5>Zambian Breweries</h5><p>Est: $120k</p>
+                                <div class="k-meta"><span><i class="fa-regular fa-clock"></i> 15 Aug</span><span><i class="fa-solid fa-user"></i> Tembo</span></div>
+                            </div>
+                        </div>
+                        <div class="kanban-col glass-panel">
+                            <h4 class="col-title">Quotation Sent (1)</h4>
+                            <div class="kanban-card glass-card">
+                                <h5>Chibuluma Mines</h5><p>Est: $300k</p>
+                                <div class="k-meta"><span><i class="fa-regular fa-clock"></i> 10 Aug</span><span><i class="fa-solid fa-user"></i> Mbewe</span></div>
+                            </div>
+                        </div>
+                        <div class="kanban-col glass-panel">
+                            <h4 class="col-title">Negotiation (1)</h4>
+                            <div class="kanban-card glass-card">
+                                <h5>Ndola Lime</h5><p>Est: $75k</p>
+                                <div class="k-meta"><span><i class="fa-regular fa-clock"></i> 05 Aug</span><span><i class="fa-solid fa-user"></i> Phiri</span></div>
+                            </div>
+                        </div>
+                        <div class="kanban-col glass-panel border-green">
+                            <h4 class="col-title">Contract Awarded (1)</h4>
+                            <div class="kanban-card glass-card success">
+                                <h5>Kansanshi Mines</h5><p>Final: $1.1M</p>
+                                <div class="k-meta"><span><i class="fa-regular fa-check-circle"></i> Closed</span><span><i class="fa-solid fa-user"></i> Tembo</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="module-inventory" class="module hidden">
+                    <div class="cards-grid">
+                        <div class="glass-card stat-card">
+                            <i class="fa-solid fa-car-battery icon-large text-purple"></i>
+                            <h4>Industrial Batteries</h4>
+                            <p class="qty">Qty: 450 Units</p>
+                            <span class="status approved mt-1">In Stock</span>
+                            <small>Loc: Lusaka Warehouse A</small>
+                        </div>
+                        <div class="glass-card stat-card">
+                            <i class="fa-solid fa-helmet-safety icon-large text-yellow"></i>
+                            <h4>Safety PPE Kits</h4>
+                            <p class="qty">Qty: 1,200 Sets</p>
+                            <span class="status approved mt-1">In Stock</span>
+                            <small>Loc: Ndola Depot</small>
+                        </div>
+                        <div class="glass-card stat-card">
+                            <i class="fa-solid fa-plug icon-large text-blue"></i>
+                            <h4>Electrical Cables</h4>
+                            <p class="qty">Qty: 50 Rolls</p>
+                            <span class="status pending mt-1">Low Stock</span>
+                            <small>Loc: Lusaka Warehouse B</small>
+                        </div>
+                        <div class="glass-card stat-card">
+                            <i class="fa-solid fa-toolbox icon-large text-gray"></i>
+                            <h4>Mining Drill Bits</h4>
+                            <p class="qty">Qty: 15 Units</p>
+                            <span class="status pending mt-1">Reorder Required</span>
+                            <small>Loc: Solwezi Depot</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="module-logistics" class="module hidden">
+                    <div class="logistics-grid">
+                        <div class="glass-card map-placeholder">
+                            <div class="map-overlay">
+                                <i class="fa-solid fa-map-location-dot"></i>
+                                <h3>Live Fleet Tracking</h3>
+                                <p>GPS visualization placeholder (API integration required)</p>
+                            </div>
+                        </div>
+                        <div class="glass-card">
+                            <h3>Delivery Timeline</h3>
+                            <div class="timeline mt-2">
+                                <div class="timeline-item">
+                                    <div class="t-icon bg-green"><i class="fa-solid fa-check"></i></div>
+                                    <div class="t-content"><h4>Dispatched</h4><p>Truck ZB-109 left Johannesburg.</p><small>Aug 12, 08:00 AM</small></div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="t-icon bg-purple"><i class="fa-solid fa-truck"></i></div>
+                                    <div class="t-content"><h4>In Transit (Border)</h4><p>Clearing customs at Chirundu.</p><small>Aug 14, 14:30 PM</small></div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="t-icon bg-gray"><i class="fa-solid fa-warehouse"></i></div>
+                                    <div class="t-content"><h4>Expected Arrival</h4><p>Lusaka Main Depot.</p><small>Aug 15, 10:00 AM</small></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="module-documents" class="module hidden">
+                    <div class="filter-bar glass-panel mb-2 flex-between">
+                        <div class="search-box w-50"><i class="fa-solid fa-search"></i><input type="text" placeholder="Search Files..."></div>
+                        <button class="btn btn-primary"><i class="fa-solid fa-cloud-arrow-up"></i> Upload</button>
+                    </div>
+                    <h3 class="mb-1">Workspaces</h3>
+                    <div class="folder-grid mb-2">
+                        <div class="glass-card folder-card"><i class="fa-solid fa-folder text-yellow"></i> <h4>Contracts</h4></div>
+                        <div class="glass-card folder-card"><i class="fa-solid fa-folder text-yellow"></i> <h4>Procurement</h4></div>
+                        <div class="glass-card folder-card"><i class="fa-solid fa-folder text-yellow"></i> <h4>Govt Documents</h4></div>
+                        <div class="glass-card folder-card"><i class="fa-solid fa-folder text-yellow"></i> <h4>Invoices</h4></div>
+                    </div>
+                    <h3 class="mb-1">Recent Files</h3>
+                    <div class="cards-grid">
+                        <div class="glass-card file-card"><i class="fa-solid fa-file-pdf text-red"></i> <div class="f-info"><h4>Q3_Tax_Clearance.pdf</h4><small>2.4 MB</small></div></div>
+                        <div class="glass-card file-card"><i class="fa-solid fa-file-excel text-green"></i> <div class="f-info"><h4>Inventory_Aug2026.xlsx</h4><small>1.1 MB</small></div></div>
+                        <div class="glass-card file-card"><i class="fa-solid fa-file-word text-blue"></i> <div class="f-info"><h4>Supplier_Agreement.docx</h4><small>800 KB</small></div></div>
+                    </div>
+                </div>
+
+                <div id="module-reports" class="module hidden">
+                    <div class="cards-grid">
+                        <div class="glass-card report-card">
+                            <div class="r-icon"><i class="fa-solid fa-chart-bar"></i></div>
+                            <h4>Monthly Procurement</h4><p>August 2026 Summary</p>
+                            <div class="r-actions"><button class="btn btn-secondary btn-sm">Preview</button><button class="btn btn-primary btn-sm"><i class="fa-solid fa-download"></i> PDF</button></div>
+                        </div>
+                        <div class="glass-card report-card">
+                            <div class="r-icon"><i class="fa-solid fa-money-bill-wave"></i></div>
+                            <h4>Revenue & Sales</h4><p>Q3 Performance</p>
+                            <div class="r-actions"><button class="btn btn-secondary btn-sm">Preview</button><button class="btn btn-primary btn-sm"><i class="fa-solid fa-download"></i> PDF</button></div>
+                        </div>
+                        <div class="glass-card report-card">
+                            <div class="r-icon"><i class="fa-solid fa-building-shield"></i></div>
+                            <h4>Government Submissions</h4><p>ZRA / PACRA Filings</p>
+                            <div class="r-actions"><button class="btn btn-secondary btn-sm">Preview</button><button class="btn btn-primary btn-sm"><i class="fa-solid fa-download"></i> PDF</button></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="module-analytics" class="module hidden">
+                    <div class="dashboard-bottom-grid">
+                        <div class="glass-card">
+                            <h3>Monthly Spend (Mock Chart)</h3>
+                            <div class="mock-bar-chart mt-2">
+                                <div class="bar-col"><div class="bar" style="height: 40%"></div><span>Apr</span></div>
+                                <div class="bar-col"><div class="bar" style="height: 60%"></div><span>May</span></div>
+                                <div class="bar-col"><div class="bar" style="height: 85%"></div><span>Jun</span></div>
+                                <div class="bar-col"><div class="bar" style="height: 50%"></div><span>Jul</span></div>
+                                <div class="bar-col"><div class="bar" style="height: 95%"></div><span>Aug</span></div>
+                            </div>
+                        </div>
+                        <div class="glass-card flex-center-col">
+                            <h3>Procurement Category Split</h3>
+                            <div class="mock-donut-chart mt-2">
+                                <div class="donut-hole">65%<br><small>Mining</small></div>
+                            </div>
+                            <div class="chart-legend mt-2">
+                                <span><span class="dot c-purple"></span> Mining</span>
+                                <span><span class="dot c-blue"></span> Construction</span>
+                                <span><span class="dot c-yellow"></span> IT</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="module-employees" class="module hidden">
+                    <div class="cards-grid">
+                        <div class="glass-card emp-card">
+                            <img src="https://i.pravatar.cc/150?img=11" alt="Emp">
+                            <h4>M. Banda</h4><p>System Admin</p>
+                            <div class="e-contact"><span><i class="fa-solid fa-envelope"></i> admin@zps.co.zm</span><span><i class="fa-solid fa-phone"></i> +260 97 000 0001</span></div>
+                        </div>
+                        <div class="glass-card emp-card">
+                            <img src="https://i.pravatar.cc/150?img=47" alt="Emp">
+                            <h4>S. Tembo</h4><p>Sales Executive</p>
+                            <div class="e-contact"><span><i class="fa-solid fa-envelope"></i> s.tembo@zps.co.zm</span><span><i class="fa-solid fa-phone"></i> +260 97 000 0002</span></div>
+                        </div>
+                        <div class="glass-card emp-card">
+                            <img src="https://i.pravatar.cc/150?img=12" alt="Emp">
+                            <h4>D. Phiri</h4><p>Logistics Manager</p>
+                            <div class="e-contact"><span><i class="fa-solid fa-envelope"></i> d.phiri@zps.co.zm</span><span><i class="fa-solid fa-phone"></i> +260 97 000 0003</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="module-settings" class="module hidden">
+                    <div class="glass-card form-card">
+                        <h3>System Preferences</h3>
+                        <form id="settings-form" class="mt-2">
+                            <div class="form-row">
+                                <div class="input-group w-50">
+                                    <label>Company Name</label>
+                                    <input type="text" value="ZORAI Procurement Service Ltd">
+                                </div>
+                                <div class="input-group w-50">
+                                    <label>Default Currency</label>
+                                    <select class="glass-input">
+                                        <option>USD ($)</option>
+                                        <option>ZMW (K)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="input-group mt-1">
+                                <label>Theme Options</label>
+                                <div class="checkbox-label"><input type="checkbox" checked> Enable Glassmorphism Effects</div>
+                                <div class="checkbox-label mt-1"><input type="checkbox" checked> Enable Animation Counters</div>
+                            </div>
+                            <button type="button" class="btn btn-primary mt-2">Save Changes</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </section>
+
+    <div class="fab-container hidden" id="fab-container">
+        <ul class="fab-options" id="fab-options">
+            <li><button class="fab-item" title="New Procurement"><i class="fa-solid fa-cart-plus"></i></button></li>
+            <li><button class="fab-item" title="Add Supplier"><i class="fa-solid fa-truck"></i></button></li>
+            <li><button class="fab-item" title="Upload Document"><i class="fa-solid fa-file-arrow-up"></i></button></li>
+        </ul>
+        <button class="fab-main" id="fab-main"><i class="fa-solid fa-plus"></i></button>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
