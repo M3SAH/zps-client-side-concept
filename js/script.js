@@ -14,6 +14,22 @@ const logoutBtn = document.getElementById('logout-btn');
 const modules = document.querySelectorAll('.module');
 const fabMain = document.getElementById('fab-main');
 
+// --- Create Sidebar Overlay for Mobile ---
+function createSidebarOverlay() {
+    const existingOverlay = document.querySelector('.sidebar-overlay');
+    if (existingOverlay) return;
+    
+    const overlay = document.createElement('div');
+    overlay.className = 'sidebar-overlay';
+    document.body.appendChild(overlay);
+    
+    overlay.addEventListener('click', () => {
+        sidebar.classList.remove('open');
+        overlay.classList.remove('show');
+    });
+}
+createSidebarOverlay();
+
 // --- Mock Authentication ---
 loginForm.addEventListener('submit', (e) => {
     e.preventDefault(); // Prevent page reload
@@ -36,6 +52,8 @@ logoutBtn.addEventListener('click', () => {
     
     // Reset sidebar if mobile
     sidebar.classList.remove('open');
+    const overlay = document.querySelector('.sidebar-overlay');
+    if (overlay) overlay.classList.remove('show');
 });
 
 // --- Sidebar Navigation & Routing ---
@@ -64,8 +82,10 @@ navLinks.forEach(link => {
         targetModule.classList.add('active');
         
         // Close sidebar on mobile after clicking
-        if (window.innerWidth <= 768) {
+        if (window.innerWidth <= 767) {
             sidebar.classList.remove('open');
+            const overlay = document.querySelector('.sidebar-overlay');
+            if (overlay) overlay.classList.remove('show');
         }
         
         // Trigger specific animations if needed
@@ -78,10 +98,23 @@ navLinks.forEach(link => {
 // --- Mobile Sidebar Toggle ---
 mobileMenuBtn.addEventListener('click', () => {
     sidebar.classList.add('open');
+    const overlay = document.querySelector('.sidebar-overlay');
+    if (overlay) overlay.classList.add('show');
 });
 
 closeSidebarBtn.addEventListener('click', () => {
     sidebar.classList.remove('open');
+    const overlay = document.querySelector('.sidebar-overlay');
+    if (overlay) overlay.classList.remove('show');
+});
+
+// --- Close sidebar when pressing Escape key ---
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && window.innerWidth <= 767 && sidebar.classList.contains('open')) {
+        sidebar.classList.remove('open');
+        const overlay = document.querySelector('.sidebar-overlay');
+        if (overlay) overlay.classList.remove('show');
+    }
 });
 
 // --- Number Counter Animation ---
@@ -127,11 +160,37 @@ document.addEventListener('click', (e) => {
     }
 });
 
-// Prevent form submissions on mock settings page
+// Close FAB when pressing Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && fabContainer.classList.contains('open')) {
+        fabContainer.classList.remove('open');
+    }
+});
+
+// --- Prevent form submissions on mock settings page ---
 const settingsForm = document.getElementById('settings-form');
 if (settingsForm) {
     settingsForm.querySelector('.btn-primary').addEventListener('click', (e) => {
         e.preventDefault();
         alert('Settings saved (Mock Demo).');
     });
+}
+
+// --- Smooth Scrolling for mobile ---
+if (navigator.userAgent.match(/mobile|android/i)) {
+    document.addEventListener('touchstart', (e) => {
+        const scrollElements = document.querySelectorAll('[class*="scroll"], [class*="kanban"], [class*="table-responsive"]');
+        scrollElements.forEach(el => {
+            if (el.contains(e.target)) {
+                el.style.WebkitOverflowScrolling = 'touch';
+            }
+        });
+    }, { passive: true });
+}
+
+// --- Prevent layout shifts on scroll ---
+const html = document.documentElement;
+const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+if (scrollbarWidth > 0) {
+    html.style.overflowY = 'scroll';
 }
